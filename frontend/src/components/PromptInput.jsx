@@ -4,8 +4,17 @@ import { samplePrompts } from "../utils/mockData";
 function PromptInput({ prompt, setPrompt, onSubmit, loading }) {
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log("✅ PromptInput: Submit button clicked");
+
     if (prompt && prompt.trim() && !loading) {
+      console.log("📨 Prompt being submitted:", prompt);
       onSubmit(prompt);
+    } else {
+      console.log("❌ Submission blocked", {
+        prompt,
+        loading,
+      });
     }
   };
 
@@ -17,13 +26,20 @@ function PromptInput({ prompt, setPrompt, onSubmit, loading }) {
 
   return (
     <div className="w-full max-w-3xl mx-auto">
-      <form onSubmit={handleSubmit} className="bg-[#111827] border border-slate-800 rounded-xl p-4 sm:p-5 shadow-xl transition-all">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-[#111827] border border-slate-800 rounded-xl p-4 sm:p-5 shadow-xl transition-all"
+      >
         {/* Input Header */}
         <div className="flex items-center justify-between mb-2">
-          <label htmlFor="prompt-input" className="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+          <label
+            htmlFor="prompt-input"
+            className="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center gap-1.5"
+          >
             <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
             Project Specification Brief
           </label>
+
           <span className="text-[11px] text-slate-500 font-mono">
             {prompt ? prompt.length : 0} chars
           </span>
@@ -45,6 +61,7 @@ function PromptInput({ prompt, setPrompt, onSubmit, loading }) {
           <span className="text-[11px] font-medium text-slate-400 block mb-2">
             Or select an example specification:
           </span>
+
           <div className="flex flex-wrap gap-2">
             {samplePrompts.map((sample, idx) => (
               <button
@@ -60,7 +77,7 @@ function PromptInput({ prompt, setPrompt, onSubmit, loading }) {
           </div>
         </div>
 
-        {/* Submit Actions */}
+        {/* Submit Button */}
         <div className="mt-4 flex items-center justify-between border-t border-slate-800/80 pt-3">
           <span className="text-[11px] text-slate-500">
             Press Shift + Enter for new lines
