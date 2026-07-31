@@ -12,23 +12,42 @@ export function buildExecutiveSummary({ project, matchedTeam, budget, timeline }
 }
 
 export function buildReasoning({ requirements, matchedTeam }) {
-  return {
-    skills: requirements.skills,
-    selectedRoles: matchedTeam.map((member) => member.role),
-    explanation:
-      "Freelancers were selected based on skill match, experience and rating."
-  };
+  return [
+    `AI identified ${requirements.roles.length} key roles for this project.`,
+    `Required skills: ${requirements.skills.join(", ")}.`,
+    `Selected ${matchedTeam.length} freelancers based on skill match and experience.`,
+    "Budget was estimated using freelancer hourly rates.",
+    "Timeline was generated based on project complexity."
+  ];
 }
 
 export function buildRisks() {
-  return {
-    risks: [
-      "Changing requirements",
-      "Scope creep",
-      "API delays",
-      "Resource availability"
-    ]
-  };
+  return [
+    {
+      title: "Scope Creep",
+      severity: "High",
+      impact: "Project cost and duration may increase.",
+      mitigation: "Freeze requirements before development."
+    },
+    {
+      title: "API Integration",
+      severity: "Medium",
+      impact: "Third-party services may delay development.",
+      mitigation: "Use backup APIs and proper error handling."
+    },
+    {
+      title: "Security Issues",
+      severity: "High",
+      impact: "Sensitive data may be exposed.",
+      mitigation: "Implement authentication and encryption."
+    },
+    {
+      title: "Team Availability",
+      severity: "Low",
+      impact: "Resource changes may delay delivery.",
+      mitigation: "Keep backup freelancers available."
+    }
+  ];
 }
 
 // ---------- Freelancer Summary ----------

@@ -285,12 +285,29 @@ const safeRequirements = {
             AI Architectural Reasoning
           </h2>
           <div className="space-y-2">
-            {reasoning.map((point, idx) => (
-              <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                <span className="leading-relaxed">{point}</span>
-              </div>
-            ))}
+          {reasoning && (
+  <>
+    <div className="flex items-start gap-2.5 text-xs text-slate-300">
+      <Check className="w-4 h-4 text-emerald-400 mt-0.5" />
+      <span>
+        <strong>Skills:</strong> {reasoning.skills?.join(", ")}
+      </span>
+    </div>
+
+    <div className="flex items-start gap-2.5 text-xs text-slate-300">
+      <Check className="w-4 h-4 text-emerald-400 mt-0.5" />
+      <span>
+        <strong>Selected Roles:</strong>{" "}
+        {reasoning.selectedRoles?.join(", ")}
+      </span>
+    </div>
+
+    <div className="flex items-start gap-2.5 text-xs text-slate-300">
+      <Check className="w-4 h-4 text-emerald-400 mt-0.5" />
+      <span>{reasoning.explanation}</span>
+    </div>
+  </>
+)}
           </div>
         </section>
 
