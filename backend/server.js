@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import projectRoutes from "./routes/projectRoutes.js";
+import freelancerRoutes from "./routes/freelancerRoutes.js";
 
 dotenv.config();
 
@@ -20,6 +21,12 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/project", projectRoutes);
+app.use("/api/freelancer", freelancerRoutes);
+
+// Catch-all for unmatched API routes — always JSON, never Express's HTML 404 page
+app.use("/api", (req, res) => {
+    res.status(404).json({ success: false, message: "Route not found" });
+});
 
 app.use((err, req, res, next) => {
     console.error(err);
