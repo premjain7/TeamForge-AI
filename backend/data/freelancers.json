@@ -1,1 +1,18 @@
-[]
+[
+  { "name": "Rahul", "skills": ["React", "Node", "MongoDB"], "experience": 5, "rating": 4.9, "hourlyRate": 25 },
+  { "name": "Ananya", "skills": ["React", "Tailwind", "Figma"], "experience": 3, "rating": 4.7, "hourlyRate": 18 },
+  { "name": "Vikram", "skills": ["Node", "Express", "MongoDB", "AWS"], "experience": 6, "rating": 4.8, "hourlyRate": 30 },
+  { "name": "Sneha", "skills": ["Stripe", "Node", "Payments"], "experience": 4, "rating": 4.6, "hourlyRate": 22 },
+  { "name": "Karan", "skills": ["React", "Redux", "Node"], "experience": 2, "rating": 4.3, "hourlyRate": 15 },
+  { "name": "Priya", "skills": ["AWS", "Docker", "CI/CD"], "experience": 5, "rating": 4.9, "hourlyRate": 28 },
+  { "name": "Arjun", "skills": ["MongoDB", "Node", "GraphQL"], "experience": 4, "rating": 4.5, "hourlyRate": 20 },
+  { "name": "Neha", "skills": ["React", "Node", "Stripe", "AWS", "Machine Learning"], "experience": 7, "rating": 5.0, "hourlyRate": 35 },
+  { "name": "Rohan", "skills": ["React Native", "Firebase"], "experience": 3, "rating": 4.2, "hourlyRate": 16 },
+  { "name": "Divya", "skills": ["React", "Node", "MongoDB", "Admin Dashboards"], "experience": 5, "rating": 4.8, "hourlyRate": 26 },
+  { "name": "Aditya", "skills": ["Python", "Machine Learning", "Prompt Engineering"], "experience": 4, "rating": 4.4, "hourlyRate": 21 },
+  { "name": "Ishita", "skills": ["React", "Node", "REST APIs"], "experience": 3, "rating": 4.6, "hourlyRate": 19 },
+  { "name": "Manish", "skills": ["AWS", "Node", "Stripe", "Authentication"], "experience": 6, "rating": 4.7, "hourlyRate": 27 },
+  { "name": "Kavya", "skills": ["React", "UI/UX", "Figma"], "experience": 2, "rating": 4.1, "hourlyRate": 14 },
+  { "name": "Siddharth", "skills": ["Node", "MongoDB", "React", "AWS", "Gemini API"], "experience": 8, "rating": 4.9, "hourlyRate": 32 },
+  { "name": "Fatima", "skills": ["React Native", "Node.js", "API Integration"], "experience": 4, "rating": 4.5, "hourlyRate": 20 }
+]
