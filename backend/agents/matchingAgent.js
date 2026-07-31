@@ -1,13 +1,15 @@
 import { getAllFreelancers } from '../services/freelancerRepository.js';
 import { calculateScore } from '../utils/scoreCalculator.js';
+import { generateSummary } from './summaryAgent.js';
 
 /**
  * Matches registered freelancers against project requirements and ranks them by score.
+ * Ensures every freelancer has a unique AI-generated profile summary.
  * 
  * @param {Array<string>} requiredSkills Array of required skills & technologies
  * @param {Array<string>} requiredRoles Array of required roles
  * @param {number} teamSize Number of top freelancers to return
- * @returns {Array<object>} Ranked list of registered freelancers
+ * @returns {Array<object>} Ranked list of registered freelancers with complete AI summary objects
  */
 export function matchFreelancers(requiredSkills = [], requiredRoles = [], teamSize = 4) {
   const freelancers = getAllFreelancers();
@@ -19,16 +21,8 @@ export function matchFreelancers(requiredSkills = [], requiredRoles = [], teamSi
   const scored = freelancers.map((f) => {
     const score = calculateScore(f, requiredSkills, requiredRoles);
 
-    // Build concise AI summary / match rationale
-    const matchedSkillList = (f.skills || []).filter((fs) =>
-      (requiredSkills || []).some((rs) =>
-        fs.toLowerCase().includes(rs.toLowerCase()) || rs.toLowerCase().includes(fs.toLowerCase())
-      )
-    );
-
-    const summaryText = matchedSkillList.length > 0
-      ? `Strong fit with ${f.experience || 0}+ yrs exp in ${f.currentRole}. Core competencies in ${matchedSkillList.join(', ')}.`
-      : `Specialist with ${f.experience || 0}+ yrs exp in ${f.currentRole} and solid technical background.`;
+    // Generate dynamic unique AI summary object if not already present on record
+    const aiSummary = generateSummary(f);
 
     return {
       id: f.id,
@@ -47,11 +41,15 @@ export function matchFreelancers(requiredSkills = [], requiredRoles = [], teamSi
       githubUrl: f.githubUrl || '',
       portfolioUrl: f.portfolioUrl || '',
       linkedinUrl: f.linkedinUrl || '',
+      resume: f.resume || null,
       rating: f.rating || 4.8,
       matchScore: score,
       matchPercentage: score,
-      summary: summaryText,
-      reason: summaryText
+
+      // Unique AI Summary Fields
+      summary: aiSummary.professionalSummary,
+      reason: aiSummary.professionalSummary,
+      aiSummary
     };
   });
 
