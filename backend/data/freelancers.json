@@ -1190,5 +1190,84 @@
     "rating": 0,
     "verified": false,
     "createdAt": "2026-07-31T10:07:14.852Z"
+  },
+  {
+    "id": 53,
+    "fullName": "sdada",
+    "email": "djkjsd@gmail.com",
+    "phone": "asdsad",
+    "location": "",
+    "experience": 2,
+    "currentRole": "zcsc",
+    "availability": "Available Immediately",
+    "skills": [
+      "React"
+    ],
+    "preferredRole": "Backend Developer",
+    "githubUrl": "dsasdd",
+    "portfolioUrl": "",
+    "linkedinUrl": "",
+    "resume": {
+      "filename": "1785495122906-679007341.pdf",
+      "filepath": "/uploads/resumes/1785495122906-679007341.pdf",
+      "uploadedAt": "2026-07-31T10:52:02.926Z",
+      "size": 227521
+    },
+    "rating": 0,
+    "verified": false,
+    "createdAt": "2026-07-31T10:52:02.928Z"
+  },
+  {
+    "id": 54,
+    "fullName": "prem jain",
+    "email": "kjsd@gmail.com",
+    "phone": "92303123",
+    "location": "",
+    "experience": 1,
+    "currentRole": "front end developer",
+    "availability": "Available Immediately",
+    "skills": [
+      "React",
+      "React Native"
+    ],
+    "preferredRole": "Frontend Developer",
+    "githubUrl": "asdasdasd",
+    "portfolioUrl": "",
+    "linkedinUrl": "",
+    "resume": {
+      "filename": "1785495297789-961372184.pdf",
+      "filepath": "/uploads/resumes/1785495297789-961372184.pdf",
+      "uploadedAt": "2026-07-31T10:54:57.822Z",
+      "size": 227521
+    },
+    "rating": 0,
+    "verified": false,
+    "createdAt": "2026-07-31T10:54:57.827Z"
+  },
+  {
+    "id": 55,
+    "fullName": "satwika",
+    "email": "asdasd@gmail.com",
+    "phone": "asdassd",
+    "location": "",
+    "experience": 1,
+    "currentRole": "ui/ux",
+    "availability": "Available Immediately",
+    "skills": [
+      "UI/UX"
+    ],
+    "preferredRole": "UI/UX Designer",
+    "githubUrl": "asdsad",
+    "portfolioUrl": "",
+    "linkedinUrl": "",
+    "resume": {
+      "filename": "1785495468294-886716078.pdf",
+      "filepath": "/uploads/resumes/1785495468294-886716078.pdf",
+      "uploadedAt": "2026-07-31T10:57:48.302Z",
+      "size": 227521
+    },
+    "rating": 0,
+    "verified": false,
+    "createdAt": "2026-07-31T10:57:48.302Z"
   }
 ]

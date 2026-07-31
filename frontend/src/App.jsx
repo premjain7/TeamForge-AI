@@ -3,6 +3,7 @@ import useProject from "./hooks/useProject";
 
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
+import Payment from "./pages/Payment";
 import LoadingSpinner from "./components/LoadingSpinner";
 import Landing from "./pages/Landing";
 import FreelancerPortal from "./pages/FreelancerPortal";
@@ -14,6 +15,7 @@ import "./styles/globals.css";
 
 function App() {
   const [userType, setUserType] = useState(null);
+  const [currentView, setCurrentView] = useState(null); // null | 'dashboard' | 'payment'
 
   const {
     prompt,
@@ -28,6 +30,11 @@ function App() {
   const goToLanding = () => {
     resetAnalysis();
     setUserType(null);
+    setCurrentView(null);
+  };
+
+  const handleHireFreelancer = (hirePayload) => {
+    setCurrentView("payment");
   };
 
   if (!userType) {
@@ -47,7 +54,16 @@ function App() {
     );
   }
 
-  // Existing client flow
+  // Client flow view handling
+
+  if (currentView === "payment") {
+    return (
+      <Payment
+        onBackToDashboard={() => setCurrentView("dashboard")}
+        onBackToHome={goToLanding}
+      />
+    );
+  }
 
   if (status === "loading") {
     return (
@@ -62,7 +78,14 @@ function App() {
   }
 
   if (status === "completed" && analysisData) {
-    return <Dashboard data={analysisData} onReset={resetAnalysis} onBack={goToLanding} />;
+    return (
+      <Dashboard
+        data={analysisData}
+        onReset={resetAnalysis}
+        onBack={goToLanding}
+        onHireFreelancer={handleHireFreelancer}
+      />
+    );
   }
 
   return (
