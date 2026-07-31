@@ -22,16 +22,46 @@ import Footer from "../components/Footer";
 function Dashboard({ data, onReset }) {
   if (!data) return null;
 
-  const {
-    executiveSummary,
-    project,
-    requirements,
-    recommendedTeam,
-    budget,
-    timeline,
-    reasoning,
-    risks
-  } = data;
+const {
+  project = {},
+  requirements = {},
+} = data;
+
+const executiveSummary = data.executiveSummary || {
+  overview: "Executive summary will be generated after all AI agents are implemented.",
+  complexity: project.complexity || "Medium",
+  estimatedTeamSize: requirements.roles?.length || 0,
+  estimatedBudget: "Not Available",
+  estimatedTimeline: project.estimatedDuration || "Not Available",
+  keyRecommendation: "Requirement analysis completed successfully.",
+  biggestRisk: "Budget, timeline and risk analysis are not available yet."
+};
+
+const recommendedTeam = data.recommendedTeam || [];
+
+const budget = data.budget || {
+  total: "Not Available",
+  breakdown: []
+};
+
+const timeline = data.timeline || {
+  phases: []
+};
+
+const reasoning = data.reasoning || [
+  "Requirement analysis completed.",
+  "Budget agent not implemented yet.",
+  "Timeline agent not implemented yet.",
+  "Matching agent not implemented yet."
+];
+
+const risks = data.risks || [];
+
+const safeRequirements = {
+  roles: requirements.roles || [],
+  skills: requirements.skills || [],
+  technologies: requirements.technologies || []
+};
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0B1120] text-slate-100 selection:bg-indigo-500/30">
@@ -180,7 +210,7 @@ function Dashboard({ data, onReset }) {
               Required Specialist Roles
             </h2>
             <div className="flex flex-wrap gap-2">
-              {requirements.roles.map((role, idx) => (
+              {safeRequirements.roles.map((role, idx) => (
                 <span
                   key={idx}
                   className="text-xs font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-2.5 py-1 rounded-md"
@@ -203,7 +233,7 @@ function Dashboard({ data, onReset }) {
                   Technologies
                 </span>
                 <div className="flex flex-wrap gap-1.5">
-                  {requirements.technologies.map((tech, idx) => (
+                  {safeRequirements.technologies.map((tech, idx) => (
                     <span key={idx} className="text-xs font-mono bg-slate-900 text-slate-200 border border-slate-800 px-2 py-0.5 rounded">
                       {tech}
                     </span>
@@ -215,7 +245,7 @@ function Dashboard({ data, onReset }) {
                   Core Skills
                 </span>
                 <div className="flex flex-wrap gap-1.5">
-                  {requirements.skills.map((skill, idx) => (
+                  {safeRequirements.skills.map((skill, idx) => (
                     <span key={idx} className="text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">
                       {skill}
                     </span>
