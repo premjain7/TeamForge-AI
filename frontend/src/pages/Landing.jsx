@@ -7,7 +7,7 @@ export default function Landing({
 }) {
   return (
     <div className="min-h-screen flex flex-col bg-[#0B1120] text-white">
-      <Navbar />
+      <Navbar hideLinks />
 
       <main className="flex-1 flex items-center justify-center px-6">
         <div className="max-w-5xl w-full text-center">

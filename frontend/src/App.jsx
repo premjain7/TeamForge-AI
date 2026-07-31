@@ -25,7 +25,11 @@ function App() {
     resetAnalysis,
   } = useProject();
 
-  // First screen
+  const goToLanding = () => {
+    resetAnalysis();
+    setUserType(null);
+  };
+
   if (!userType) {
     return (
       <Landing
@@ -35,21 +39,20 @@ function App() {
     );
   }
 
-  // Freelancer flow
   if (userType === "freelancer") {
     return (
       <FreelancerPortal
-        onBack={() => setUserType(null)}
+        onBack={goToLanding}
       />
     );
   }
 
-  // Existing client flow (UNCHANGED)
+  // Existing client flow
 
   if (status === "loading") {
     return (
       <div className="min-h-screen flex flex-col bg-[#0B1120] text-slate-100">
-        <Navbar status={status} onReset={resetAnalysis} />
+        <Navbar status={status} onReset={resetAnalysis} onBack={goToLanding} />
         <main className="flex-1 flex items-center justify-center p-4">
           <LoadingSpinner />
         </main>
@@ -59,7 +62,7 @@ function App() {
   }
 
   if (status === "completed" && analysisData) {
-    return <Dashboard data={analysisData} onReset={resetAnalysis} />;
+    return <Dashboard data={analysisData} onReset={resetAnalysis} onBack={goToLanding} />;
   }
 
   return (
@@ -70,6 +73,7 @@ function App() {
       loading={loading}
       status={status}
       onReset={resetAnalysis}
+      onBack={goToLanding}
     />
   );
 }
