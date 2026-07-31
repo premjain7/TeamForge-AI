@@ -1,26 +1,87 @@
-// Mocked AI summary generator.
-// To go live with Gemini: replace the body of generateSummary() with a real
-// API call and return the same shape. Nothing else in the codebase needs to change.
-export function generateSummary({ fullName, currentRole, experience, skills, githubUrl }) {
-  const experienceNum = Number(experience) || 0;
-  const experienceLevel = experienceNum >= 6 ? 'Senior' : experienceNum >= 3 ? 'Mid-Level' : 'Junior';
-  const skillList = Array.isArray(skills) ? skills : [];
+// ---------- Project Summary ----------
+
+export function buildExecutiveSummary({ project, matchedTeam, budget, timeline }) {
+  return {
+    title: project.name || "AI Generated Project",
+    summary: `This project requires ${matchedTeam.length} recommended freelancers. Estimated budget is $${
+      budget.total || budget.totalBudget || 0
+    } with an estimated timeline of ${
+      timeline.duration || timeline.totalDuration || "4 weeks"
+    }.`
+  };
+}
+
+export function buildReasoning({ requirements, matchedTeam }) {
+  return {
+    skills: requirements.skills,
+    selectedRoles: matchedTeam.map((member) => member.role),
+    explanation:
+      "Freelancers were selected based on skill match, experience and rating."
+  };
+}
+
+export function buildRisks() {
+  return {
+    risks: [
+      "Changing requirements",
+      "Scope creep",
+      "API delays",
+      "Resource availability"
+    ]
+  };
+}
+
+// ---------- Freelancer Summary ----------
+
+export function generateSummary({
+  fullName,
+  currentRole,
+  experience,
+  skills,
+  githubUrl
+}) {
+  const years = Number(experience) || 0;
+
+  const level =
+    years >= 6
+      ? "Senior"
+      : years >= 3
+      ? "Mid-Level"
+      : "Junior";
 
   return {
-    professionalSummary: `${fullName} is a ${experienceLevel.toLowerCase()} ${currentRole} with ${experienceNum} years of hands-on experience building production-grade software.`,
+    professionalSummary: `${fullName} is a ${level} ${currentRole} with ${years} years of experience.`,
+
     technicalSummary:
-      'Demonstrates strong command of modern development practices, with a consistent track record of delivering functional, maintainable systems.',
-    verifiedSkills: skillList.length ? skillList : ['React', 'Node.js'],
-    primaryDomain: skillList[0] || currentRole,
-    recommendedRoles: [currentRole, 'Full Stack Developer'],
-    strengths: ['Clean code practices', 'Strong problem solving', 'Fast delivery'],
-    improvementAreas: ['Test coverage', 'Documentation depth'],
-    experienceLevel,
+      "Demonstrates strong software development practices and problem-solving ability.",
+
+    verifiedSkills: skills,
+
+    primaryDomain: currentRole,
+
+    recommendedRoles: [currentRole],
+
+    strengths: [
+      "Problem Solving",
+      "Clean Code",
+      "Team Collaboration"
+    ],
+
+    improvementAreas: [
+      "Documentation",
+      "Testing"
+    ],
+
+    experienceLevel: level,
+
     githubSummary: githubUrl
-      ? 'Active repository history with consistent commit activity and readable project structure.'
-      : 'No GitHub profile provided.',
+      ? "GitHub profile available."
+      : "GitHub profile not provided.",
+
     resumeSummary:
-      'Resume clearly outlines relevant experience, technologies used, and measurable project outcomes.',
-    overallRecommendation: `Strong candidate for ${experienceLevel.toLowerCase()}-level ${currentRole} roles on cross-functional teams.`
+      "Resume indicates relevant experience and technical skills.",
+
+    overallRecommendation:
+      `Recommended for ${level} ${currentRole} positions.`
   };
 }
